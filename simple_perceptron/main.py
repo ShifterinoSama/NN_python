@@ -3,7 +3,7 @@ import training as t
 import time
              
 
-perc = p.Perceptron(learning_rate=0.001)             
+perc = p.Perceptron(learning_rate=0.01)             
 size = (t.screen_width,t.screen_height)
 #inputs = (1,0.5)    
         
