@@ -9,30 +9,19 @@ class Neural_Network():
         self.input_nodes = input_nodes 
         self.hidden_nodes = hidden_nodes
         self.output_nodes = output_nodes
-        self.weights_input_hidden = np.empty((hidden_nodes, input_nodes))
-        self.weights_hidden_output = np.empty((output_nodes, hidden_nodes))
-        # Inicialization of weights
-        for i in range(len(self.weights_input_hidden)):
-            self.weights_input_hidden[i] = np.random.uniform(-1,1)
-            for j in range(len(self.weights_input_hidden)):
-                self.weights_input_hidden[i][j] = np.random.uniform(-1,1)
-        for i in range(len(self.weights_hidden_output)):
-            self.weights_hidden_output[i] = np.random.uniform(-1,1)
-            for j in range(len(self.weights_hidden_output)):
-                self.weights_hidden_output[i][j] = np.random.uniform(-1,1)
-                
-        self.bias_hidden = np.empty((self.hidden_nodes,1))
-        self.bias_output = np.empty((self.output_nodes,1))
-        # Inicialization of biases
-        for i in range(len(self.bias_hidden)):
-            self.bias_hidden[i] = np.random.uniform(0,1)
-        for i in range(len(self.bias_output)):
-            self.bias_output[i] = np.random.uniform(0,1)    
-        
-    def feedforward(self, input):
 
+        # Inicialization of weights
+        self.weights_input_hidden = np.random.uniform(-1,1,size=(hidden_nodes, input_nodes))
+        self.weights_hidden_output = np.random.uniform(-1,1,size=(output_nodes, hidden_nodes))
+
+        # Inicialization of biases    
+        self.bias_hidden = np.random.uniform(0,1,size=(self.hidden_nodes,1))
+        self.bias_output = np.random.uniform(0,1,size=(self.output_nodes,1))
+           
+        
+    def feedforward(self, inputs):
         # Generating hidden outputs
-        hidden = np.dot(self.weights_input_hidden, input) + self.bias_hidden 
+        hidden = np.dot(self.weights_input_hidden, inputs) + self.bias_hidden 
         # Activation function
         hidden = np.multiply(hidden, sigmoid(hidden[0][0]))
 
@@ -40,9 +29,17 @@ class Neural_Network():
         output = np.dot(self.weights_hidden_output, hidden) + self.bias_output
         # Activation function
         output = np.multiply(output,sigmoid(output[0][0]))
-        output = np.asarray(output).ravel()
-        return output
+        output = np.asmatrix(output)
+        return output.sum(axis=1)
     
-    def train(self, inputs, answer):
+    def train(self, inputs, targets):
+        outputs = self.feedforward(inputs)
+        # Calculate the error
+        # ERROR = TARGETS - OUTPUTS
+        output_errors = np.subtract(targets, outputs)
+
+        # Zkontrolovat jestli sedí dimenze a není nutný transpose
+        hidden_errors = np.dot(self.weights_hidden_output, output_errors)
+          
         pass
         
