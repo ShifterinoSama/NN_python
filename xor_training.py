@@ -22,10 +22,10 @@ for i in range(10001):
         f11 += 1
     brain.train(data[0],data[1])
 
-print("Number of - 1,0 - in training: ",t10)
-print("Number of - 0,1 - in training: ",t01)
-print("Number of - 0,0 - in training: ",f00)
-print("Number of - 1,1 - in training: ",f11)
+print("Number of - 1,0 - data pushed into training: ",t10)
+print("Number of - 0,1 - data pushed into training: ",t01)
+print("Number of - 0,0 - data pushed into training: ",f00)
+print("Number of - 1,1 - data pushed into training: ",f11)
 print(brain.feedforward([1,0]), "Should be True")
 print(brain.feedforward([0,1]), "Should be True")
 print(brain.feedforward([0,0]), "Should be False")
