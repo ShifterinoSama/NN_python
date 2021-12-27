@@ -52,7 +52,7 @@ class Point():
 
 def f(x):
     # y = mx+b
-    return 0.1*x+0.3
+    return 0.5*x-0.5
 
 
 

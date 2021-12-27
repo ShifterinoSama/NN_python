@@ -3,7 +3,7 @@ import training as t
 import time
              
 
-perc = p.Perceptron(learning_rate=0.01)             
+perc = p.Perceptron(learning_rate=0.001)             
 size = (t.screen_width,t.screen_height)
 #inputs = (1,0.5)    
         
@@ -18,7 +18,7 @@ for i in range(number_of_points):
 def train():
     for point in points:
         target = point.label
-        cords = (point.x,point.y, point.bias)
+        cords = (point.x,point.y, point.bias)                                                                                                   
         perc.train(cords,target)
         guess = perc.guess(cords)
         if guess == target:

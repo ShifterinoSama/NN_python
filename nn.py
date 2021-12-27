@@ -7,7 +7,7 @@ def vectorized_d_sigmoid(y):
     return y * (1-y)
 
 class Neural_Network():
-    def __init__(self,input_nodes, hidden_nodes, output_nodes, learning_rate=0.01) -> None:
+    def __init__(self,input_nodes, hidden_nodes, output_nodes, learning_rate=0.1) -> None:
         self.input_nodes = input_nodes 
         self.hidden_nodes = hidden_nodes
         self.output_nodes = output_nodes
